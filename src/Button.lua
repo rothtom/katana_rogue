@@ -10,12 +10,12 @@ end
 
 function Button:render()
     love.graphics.setFont(gFonts["buttons"])
-    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.setColor(gColors["light_grey2"])
     love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
-    love.graphics.setColor(52, 52, 52, 255)
+    love.graphics.setColor(gColors["light_grey1"])
     love.graphics.rectangle("line", self.x, self.y, self.width, self.height)
 
-    love.graphics.setColor(0, 0, 0, 255)
+    love.graphics.setColor(gColors["light_blue"])
     love.graphics.printf(self.text, self.x, self.y, self.width, "center")
 end
 

@@ -2,12 +2,14 @@ StartState = Class{__includes = BaseState}
 
 
 function StartState:enter(params)
-    -- self.PlayButton = params.PlayButton
-    -- self.SettingsButton = params.SettingsButton
+    self.PlayButton = params.PlayButton
+    self.SettingsButton = params.SettingsButton
     self.ExitButton = params.ExitButton
 end
 
 function StartState:update(dt)
+    self.PlayButton:update(dt)
+    self.SettingsButton:update(dt)
     self.ExitButton:update(dt)
 
     if love.keyboard.isDown("escape") then
@@ -16,11 +18,13 @@ function StartState:update(dt)
 end
 
 function StartState:render()
+    love.graphics.clear(gColors["dark_grey"])
     love.graphics.setFont(gFonts["heading"])
+    love.graphics.setColor(gColors["red"])
     love.graphics.printf("Katana Rogue", 0, 40, VIRTUAL_WIDTH, "center")
 
-    -- self.PlayButton:render()
-    -- self.SettingsButton:render()
+    self.PlayButton:render()
+    self.SettingsButton:render()
     self.ExitButton:render()
 end
 

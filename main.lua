@@ -1,15 +1,16 @@
 require "src/Dependencies"
 
 function love.load()
+    love.graphics.setDefaultFilter("nearest", "nearest")
+
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         fullscreen = false,
         vsync = true,
         resizable = false,
+        pixelperfect = true,
     })
 
     love.window.setTitle("Katana Rogue")
-
-    love.graphics.setDefaultFilter("nearest", "nearest")
 
     gFonts = {
         ["heading"] = love.graphics.newFont("fonts/font.ttf", 34),
@@ -18,8 +19,8 @@ function love.load()
     }
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
-        --[[
         ['play'] = function() return PlayState() end,
+        --[[
         ['serve'] = function() return ServeState() end,
         ['game-over'] = function() return GameOverState() end,
         ['victory'] = function() return VictoryState() end,
@@ -28,9 +29,18 @@ function love.load()
         ['paddle-select'] = function() return PaddleSelectState() end
         ]]-- 
     }
+
+    local ButtonWidth = 125
+    local ButtonHeight = 25
     gStateMachine:change('start', {
-       ExitButton = ExitButton("Exit", VIRTUAL_WIDTH/ 2 - 50, VIRTUAL_HEIGHT- 40, 100, 20)
+        PlayButton = PlayButton("Play", VIRTUAL_WIDTH / 2 - ButtonWidth / 2, VIRTUAL_HEIGHT - 5 * ButtonHeight, ButtonWidth, ButtonHeight),
+        SettingsButton = SettingsButton("Settings", VIRTUAL_WIDTH / 2 - ButtonWidth / 2, VIRTUAL_HEIGHT - 3.5 * ButtonHeight, ButtonWidth, ButtonHeight),
+        ExitButton = ExitButton("Exit", VIRTUAL_WIDTH/ 2 - ButtonWidth / 2, VIRTUAL_HEIGHT- 2 * ButtonHeight, ButtonWidth, ButtonHeight)
     })
+end
+
+function love.resize(w, h)
+    push:resize(w, h)
 end
 
 function love.update(dt)
