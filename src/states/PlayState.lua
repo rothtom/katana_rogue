@@ -2,6 +2,7 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:enter(params)
     self.player = params.player
+    self.round = params.round
     self.enemies = params.enemies
 end
 

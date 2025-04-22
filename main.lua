@@ -27,6 +27,7 @@ function love.load()
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
         ['play'] = function() return PlayState() end,
+        ['pick_levelup'] = function() return PickLevelUpState() end,
         --[[
         ['serve'] = function() return ServeState() end,
         ['game-over'] = function() return GameOverState() end,

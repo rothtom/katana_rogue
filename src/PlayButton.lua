@@ -4,13 +4,13 @@ function PlayButton:update(dt)
     if self:isClicked() then
         gStateMachine:change("play", {
             player = Player({
-                    max_health = 200,
+                    max_health = 120,
                     health = 100
                 },
                 nil, -- sword
                 {
                     ["q"] = Attack({
-                        ["damage"] = 15,
+                        ["damage"] = 50,
                         ["duration"] = 1,
                         ["cooldown"] = 2,
                     })
@@ -20,7 +20,8 @@ function PlayButton:update(dt)
                 max_health = 100,
                 damage = 72,
             }
-            )}
-        })        
+            )},
+            round = 1
+        })
     end
 end
