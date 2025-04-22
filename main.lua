@@ -15,7 +15,14 @@ function love.load()
     gFonts = {
         ["heading"] = love.graphics.newFont("fonts/font.ttf", 34),
         ["normal"] = love.graphics.newFont("fonts/font.ttf", 14),
+        ["small"] = love.graphics.newFont("fonts/font.ttf", 8),
         ["buttons"] = love.graphics.newFont("fonts/font.ttf", 24)
+    }
+
+    gImages = {
+        ["playBackground"] = love.graphics.newImage("sprites/background.png"),
+        ["playerSprite"] = love.graphics.newImage("sprites/player.png"),
+        ["enemie"] = love.graphics.newImage("sprites/enemie.png")
     }
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,

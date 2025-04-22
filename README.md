@@ -1,4 +1,4 @@
-4Idea:
+Idea:
     on keys 1-4 different attacks based on sword
         -> cooldown, damage, animation
     
