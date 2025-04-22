@@ -6,7 +6,16 @@ function PlayState:enter(params)
 end
 
 function PlayState:update(dt)
-    self.player.update(dt)
+    if self.enemies[1].health <= 0 then
+        table.remove(self.enemies, 1)
+    end
+    if #self.enemies == 0 then
+        gStateMachine:change("pick_levelup", {
+
+        })
+    end
+    self.player:setEnemie(self.enemies[1])
+    self.player:update(dt)
 end
 
 function PlayState:render()

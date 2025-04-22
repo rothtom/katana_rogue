@@ -9,13 +9,11 @@ local BAR_Y_OFFSET = 15
 
 function Enemie:init(stats)
     self.max_health = stats.max_health
-    self.health = stats.max_health
+    self.health = stats.health or stats.max_health
     self.damage = stats.damage
 end
 
 function Enemie:render()
-    self.health = 15
-
     local x = VIRTUAL_WIDTH / 2 - BAR_WIDTH/2
     local y = VIRTUAL_HEIGHT / 2 - ENEMY_HEIGHT/2 - BAR_Y_OFFSET
 
@@ -31,7 +29,7 @@ function Enemie:render()
 
     love.graphics.setFont(gFonts["small"])
     love.graphics.setColor(gColors["white"])
-    love.graphics.printf(self.health, x, y + 2, BAR_WIDTH,"center")
+    love.graphics.printf(self.health .. "/" .. self.max_health, x, y + 2, BAR_WIDTH,"center")
 
     love.graphics.setColor(1,1,1,1)
     love.graphics.draw(gImages["enemie"], VIRTUAL_WIDTH / 2 - ENEMY_WIDTH/2, VIRTUAL_HEIGHT / 2 - ENEMY_HEIGHT/2)

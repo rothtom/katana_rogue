@@ -17,3 +17,4 @@ require "src/states/PlayState"
 
 require "src/Player"
 require "src/Enemie"
+require "src/Attack"
