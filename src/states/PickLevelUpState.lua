@@ -2,7 +2,29 @@ PickLevelUpState = Class{__includes = BaseState}
 
 function PickLevelUpState:enter(params)
     
-    self.upgrades = params.upgrades
+    self.upgrades = {
+        Upgrade({
+            ["modifiers"] = {
+                ["max_health"] = 10,
+            },
+            ["slot"] = 1,
+        }
+        ),
+        Upgrade({
+            ["modifiers"] = {
+                ["strength"] = 0.1,
+            },
+            ["slot"] = 2,
+        }
+        ),
+        Upgrade({
+            ["modifiers"] = {
+                ["health"] = 10,
+            },
+            ["slot"] = 3,
+        }
+        ),
+    }
 end
 
 function PickLevelUpState:pick(stat)

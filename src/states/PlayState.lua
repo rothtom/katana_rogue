@@ -10,36 +10,7 @@ function PlayState:update(dt)
     if self.enemies[1].health <= 0 then
         table.remove(self.enemies, 1)
         if #self.enemies == 0 then
-            gStateMachine:change("pick_levelup", {
-                player = player,
-                upgrades = {
-                    Upgrade({
-                        ["modifiers"] = {
-                            ["max_health"] = 10,
-                        },
-                        ["slot"] = 1,
-                        ["player"] = player
-                    }
-                    ),
-                    Upgrade({
-                        ["modifiers"] = {
-                            ["damage"] = 0.1,
-                        },
-                        ["slot"] = 2,
-                        ["player"] = player
-                    }
-                    ),
-                    Upgrade({
-                        ["modifiers"] = {
-                            ["health"] = 10,
-                        },
-                        ["slot"] = 3,
-                        ["player"] = player
-                    }
-                    ),
-                }
-            })
-
+            gStateMachine:change("pick_levelup", {})
         else
             -- if enemies left ->new target
             player:setTarget(self.enemies[1])

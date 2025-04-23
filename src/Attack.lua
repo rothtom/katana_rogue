@@ -23,7 +23,7 @@ function Attack:update(dt)
 end
 
 function Attack:activate(target)
-    target.health = target.health - (self.damage * player.damage)
+    target.health = target.health - (self.damage * player.strength)
     self.duration_left = self.duration
     self.cooldown_left = self.cooldown
 end

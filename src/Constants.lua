@@ -29,3 +29,10 @@ gAttackMap = {
     ["e"] = 3,
     ["r"] = 4,
 }
+
+gStatToName = {
+    ["max_health"] = "Max HP",
+    ["health"] = "HP",
+    ["damage"] = "Damage",
+    ["strength"] = "Strength",
+}

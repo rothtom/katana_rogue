@@ -5,7 +5,7 @@ local BAR_HEIGHT = 8
 function Player:init(stats, sword, attacks, round)
     self.max_health = stats.max_health or 100
     self.health = stats.health or stats.max_health
-    self.damage = stats.damage or 1
+    self.strength = stats.strength or 1
     self.attacks = attacks
     self.active_attack = nil
     self.target = nil

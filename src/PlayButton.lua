@@ -5,6 +5,7 @@ function PlayButton:update(dt)
         player = Player({
             max_health = 10,
             health = 10,
+            strength = 1,
             },
             nil, -- sword
                 {
