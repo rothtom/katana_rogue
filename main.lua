@@ -23,8 +23,10 @@ function love.load()
     gImages = {
         ["playBackground"] = love.graphics.newImage("sprites/background.png"),
         ["playerSprite"] = love.graphics.newImage("sprites/player.png"),
-        ["enemie"] = love.graphics.newImage("sprites/enemie.png")
+        ["sword"] = love.graphics.newImage("sprites/sword.png"),
+        ["enemie"] = love.graphics.newImage("sprites/enemie.png"),
     }
+    
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
         ['play'] = function() return PlayState() end,

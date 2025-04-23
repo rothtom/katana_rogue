@@ -2,10 +2,11 @@ Player = Class{}
 
 local BAR_HEIGHT = 8
 
-function Player:init(stats, sword, attacks, round)
+function Player:init(stats, round)
     self.max_health = stats.max_health or 100
     self.health = stats.health or stats.max_health
     self.strength = stats.strength or 1
+    self.sword = sword
     self.attacks = attacks
     self.active_attack = nil
     self.target = nil
@@ -36,6 +37,8 @@ function Player:update(dt)
     if love.keyboard.isDown("r") and not self.attacks["r"]:is_onCooldown() and not self:any_attack_active() then
         self.attacks["r"]:activate(self.target, self)
     end
+
+    self.sword:update(dt)
 end
 
 function Player:any_attack_active()
@@ -90,4 +93,6 @@ function Player:render()
     for _, attack in pairs(self.attacks) do
         attack:render()
     end
+
+    self.sword:render()
 end

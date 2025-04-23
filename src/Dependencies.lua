@@ -24,3 +24,5 @@ require "src/Player"
 require "src.Enemy"
 require "src/Attack"
 require "src/Upgrade"
+
+require "src/Sword"
