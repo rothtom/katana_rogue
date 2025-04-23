@@ -14,6 +14,10 @@ function Player:init(stats, sword, attacks, round)
 end
 
 function Player:update(dt)
+    if self.health <= 0 then
+        self:die()
+    end
+
     for _, attack in pairs(self.attacks) do
         attack:update(dt)
     end
@@ -56,6 +60,12 @@ end
 
 function Player:heal(ammount)
     self.health = math.min(self.health + ammount, self.max_health)
+end
+
+function Player:die()
+    gStateMachine:change("death", {
+
+    })
 end
 
 function Player:render()

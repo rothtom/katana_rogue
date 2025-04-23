@@ -13,8 +13,8 @@ function love.load()
     love.window.setTitle("Katana Rogue")
 
     gFonts = {
-        ["heading"] = love.graphics.newFont("fonts/font.ttf", 34),
-        ["normal"] = love.graphics.newFont("fonts/font.ttf", 14),
+        ["heading"] = love.graphics.newFont("fonts/font.ttf", 32),
+        ["normal"] = love.graphics.newFont("fonts/font.ttf", 16),
         ["small"] = love.graphics.newFont("fonts/font.ttf", 8),
         ["buttons"] = love.graphics.newFont("fonts/font.ttf", 24)
     }
@@ -28,6 +28,7 @@ function love.load()
         ['start'] = function() return StartState() end,
         ['play'] = function() return PlayState() end,
         ['pick_levelup'] = function() return PickLevelUpState() end,
+        ["death"] = function() return DeathState() end,
         --[[
         ['serve'] = function() return ServeState() end,
         ['game-over'] = function() return GameOverState() end,
@@ -38,13 +39,7 @@ function love.load()
         ]]-- 
     }
 
-    local ButtonWidth = 125
-    local ButtonHeight = 25
-    gStateMachine:change('start', {
-        PlayButton = PlayButton("Play", VIRTUAL_WIDTH / 2 - ButtonWidth / 2, VIRTUAL_HEIGHT - 5 * ButtonHeight, ButtonWidth, ButtonHeight),
-        SettingsButton = SettingsButton("Settings", VIRTUAL_WIDTH / 2 - ButtonWidth / 2, VIRTUAL_HEIGHT - 3.5 * ButtonHeight, ButtonWidth, ButtonHeight),
-        ExitButton = ExitButton("Exit", VIRTUAL_WIDTH/ 2 - ButtonWidth / 2, VIRTUAL_HEIGHT- 2 * ButtonHeight, ButtonWidth, ButtonHeight)
-    })
+    gStateMachine:change('start', {})
 end
 
 function love.resize(w, h)

@@ -3,8 +3,8 @@ PlayButton = Class{__includes = Button}
 function PlayButton:update(dt)
     if self:isClicked() then
         player = Player({
-            max_health = 120,
-            health = 100,
+            max_health = 10,
+            health = 10,
             },
             nil, -- sword
                 {

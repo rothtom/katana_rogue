@@ -1,10 +1,11 @@
 StartState = Class{__includes = BaseState}
 
 
+
 function StartState:enter(params)
-    self.PlayButton = params.PlayButton
-    self.SettingsButton = params.SettingsButton
-    self.ExitButton = params.ExitButton
+    self.PlayButton = PlayButton("Play", VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, VIRTUAL_HEIGHT - 5 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT)
+    self.SettingsButton = SettingsButton("Settings", VIRTUAL_WIDTH / 2 - BUTTON_WIDTH / 2, VIRTUAL_HEIGHT - 3.5 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT)
+    self.ExitButton = ExitButton("Exit", VIRTUAL_WIDTH/ 2 - BUTTON_WIDTH / 2, VIRTUAL_HEIGHT- 2 * BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT)
 end
 
 function StartState:update(dt)
