@@ -15,6 +15,9 @@ end
 function Upgrade:update(dt)
     if self:isClicked() then
         self:apply()
+        gStateMachine:change("play", {
+            ["enemies"] = create_enemies(player.round),
+        })
     end
 end
 
@@ -32,10 +35,6 @@ function Upgrade:apply()
     for stat, value in pairs(self.modifiers) do
         player[stat] = player[stat] + value
     end
-
-    gStateMachine:change("play", {
-        ["enemies"] = create_enemies(player.round),
-    })
 end
 
 function Upgrade:render()
