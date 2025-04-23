@@ -31,7 +31,7 @@ function Player:update(dt)
         self.attacks["e"]:activate(self.target, self)
     end
 
-    if love.keyboard.isDown("r") and not self.attacks["q"]:is_onCooldown() and not self:any_attack_active() then
+    if love.keyboard.isDown("r") and not self.attacks["r"]:is_onCooldown() and not self:any_attack_active() then
         self.attacks["r"]:activate(self.target, self)
     end
 end
@@ -50,7 +50,7 @@ function Player:setTarget(target)
 end
 
 function Player:reset()
-    self.health = self.max_health
+    self.health = math.floor(math.min(self.max_health, self.health + (self.max_health - self.health * 0.7) + 1))
     for _, attack in pairs(self.attacks) do
         attack:reset()
     end

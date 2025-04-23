@@ -22,6 +22,7 @@ function Enemy:update(dt)
     self.next_attack = self.next_attack - dt
     if self.next_attack <= 0 then
         self:Attack()
+        self.next_attack = math.random(0.8, 1.5)
     elseif self.next_attack < 0.3 then
         self:TelegraphAttack()
     end
@@ -48,11 +49,12 @@ function Enemy:render()
 end
 
 function Enemy:TelegraphAttack()
-    
+    self.position = "telegraph"
 end
 
 function Enemy:Attack()
-
+    self.position = "attack"
+    player.health = player.health - self.damage
 end
 
 function Enemy:calculate_position()

@@ -48,12 +48,13 @@ function PlayState:update(dt)
                 enemy.slot = enemy.slot - 1
                 enemy:calculate_position()
             end
-
         end
-
-        
+    end
+    if #self.enemies > 0 then
+        self.enemies[1]:update(dt)
     end
     player:update(dt)
+    
 end
 
 function PlayState:render()
