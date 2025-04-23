@@ -3,35 +3,35 @@ PlayButton = Class{__includes = Button}
 function PlayButton:update(dt)
     if self:isClicked() then
         sword = Sword({
-            ["damage"] = 2,
+            ["damage"] = 12,
             ["cooldown_reduction"] = 0,
         })
         attacks = {
             ["q"] = Attack({
-                ["damage"] = 50,
+                ["damage"] = 8,
                 ["duration"] = 1,
                 ["cooldown"] = 2,
             },
             "q"    
         ),
             ["w"] = Attack({
-                ["damage"] = 50,
-                ["duration"] = 1,
+                ["damage"] = 24,
+                ["duration"] = 3,
                 ["cooldown"] = 2,
             },
             "w" 
         ),
             ["e"] = Attack({
-                ["damage"] = 50,
-                ["duration"] = 1,
-                ["cooldown"] = 2,
+                ["damage"] = 30,
+                ["duration"] = 4,
+                ["cooldown"] = 5,
             },
             "e"  
         ),
             ["r"] = Attack({
                 ["damage"] = 50,
-                ["duration"] = 1,
-                ["cooldown"] = 2,
+                ["duration"] = 1.5,
+                ["cooldown"] = 10,
             },
             "r"
         ),

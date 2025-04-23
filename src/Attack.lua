@@ -2,7 +2,7 @@ Attack = Class{}
 
 local ICON_SIZE = 20
 local ICON_MARGIN = 5
-local y = VIRTUAL_HEIGHT - MARGIN_Y - 25 - ICON_MARGIN - 2
+
 
 function Attack:init(stats, key)
     self.damage = stats.damage
@@ -13,6 +13,7 @@ function Attack:init(stats, key)
     self.key = key
     self.attack_place = gAttackMap[key]
     self.x = MARGIN_X + (ICON_MARGIN + ICON_SIZE) * (self.attack_place - 1)
+    self.y = VIRTUAL_HEIGHT - MARGIN_Y - 25 - ICON_MARGIN - 2
 end
 
 function Attack:update(dt)
@@ -23,7 +24,7 @@ function Attack:update(dt)
 end
 
 function Attack:activate(target)
-    target.health = target.health - (self.damage * player.strength)
+    target.health = target.health - ((self.damage + sword.damage) * player.strength)
     self.duration_left = self.duration
     self.cooldown_left = self.cooldown
 end
@@ -39,16 +40,16 @@ function Attack:render()
     else
         love.graphics.setColor(gColors["light_grey2"])
     end
-    love.graphics.rectangle("line", self.x, y, ICON_SIZE, ICON_SIZE)
+    love.graphics.rectangle("line", self.x, self.y, ICON_SIZE, ICON_SIZE)
     
     if self:is_onCooldown() and not self:is_active() then
         love.graphics.setColor(gColors["grey"])
     else
         love.graphics.setColor(gColors["light_grey1"])
     end
-    love.graphics.rectangle("fill", self.x, y, ICON_SIZE, ICON_SIZE)
+    love.graphics.rectangle("fill", self.x, self.y, ICON_SIZE, ICON_SIZE)
     love.graphics.setColor(1,1,1,1)
-    love.graphics.printf(self.key, self.x+2, y + ICON_SIZE / 2 + 3,ICON_SIZE - 4 ,"left")
+    love.graphics.printf(self.key, self.x+2, self.y + ICON_SIZE / 2 + 3,ICON_SIZE - 4 ,"left")
 
     
 end

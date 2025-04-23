@@ -8,7 +8,6 @@ function Player:init(stats, round)
     self.strength = stats.strength or 1
     self.sword = sword
     self.attacks = attacks
-    self.active_attack = nil
     self.target = nil
     self.level = 1
     self.round = round
@@ -73,6 +72,7 @@ end
 
 function Player:render()
     local HEALTHBAR_MAX_WIDTH = 400
+    -- local HEALTHBAR_MIN_WIDTH = 20
 
     love.graphics.setColor(1,1,1,1)
     love.graphics.draw(gImages["playerSprite"], 0, 0)
