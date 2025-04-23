@@ -30,3 +30,8 @@ Idea:
     bosses -> longer windows, more dmg and hp
 
     meta progression -> swords /characters /items /moves
+
+    sword damage = base damage for all attacks
+    attacks = extra damage, on top of sword
+
+    -> all scales with character strength
