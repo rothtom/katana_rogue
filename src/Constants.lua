@@ -4,6 +4,9 @@ VIRTUAL_HEIGHT = 243
 WINDOW_WIDTH = VIRTUAL_WIDTH * 6
 WINDOW_HEIGHT = VIRTUAL_HEIGHT * 6
 
+MARGIN_X = 10
+MARGIN_Y = 3
+
 gColors = {
     ["red"] = {1, 0, 68/255, 1},
     ["purple"] = {104/255, 56/255, 108/255, 1},
@@ -13,4 +16,11 @@ gColors = {
     ["dark_grey"] = {38/255, 43/255, 68/255, 1},
     ["light_blue"] = {44/255, 232/255, 245/255, 1},
     ["white"] = {1, 1, 1, 1}
+}
+
+gAttackMap = {
+    ["q"] = 1,
+    ["w"] = 2,
+    ["e"] = 3,
+    ["r"] = 4,
 }

@@ -20,15 +20,15 @@ function Player:update(dt)
         self.attacks["q"]:activate(self.target, self)
     end
 
-    if love.keyboard.isDown("w") and not self.attacks["w"]:is_onCooldown() and not self.attacks["w"]:is_active() then
+    if love.keyboard.isDown("w") and not self.attacks["w"]:is_onCooldown() and not self:any_attack_active() then
         self.attacks["w"]:activate(self.target, self)
     end
 
-    if love.keyboard.isDown("e") and not self.attacks["e"]:is_onCooldown() and not self.attacks["e"]:is_active() then
+    if love.keyboard.isDown("e") and not self.attacks["e"]:is_onCooldown() and not self:any_attack_active() then
         self.attacks["e"]:activate(self.target, self)
     end
 
-    if love.keyboard.isDown("r") and not self.attacks["q"]:is_onCooldown() and not self.attacks["r"]:is_active() then
+    if love.keyboard.isDown("r") and not self.attacks["q"]:is_onCooldown() and not self:any_attack_active() then
         self.attacks["r"]:activate(self.target, self)
     end
 end
@@ -53,15 +53,19 @@ function Player:render()
     love.graphics.draw(gImages["playerSprite"], 0, 0)
 
     love.graphics.setColor(gColors["light_grey1"])
-    love.graphics.rectangle("line", 10, VIRTUAL_HEIGHT - 5 - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.max_health), BAR_HEIGHT)
+    love.graphics.rectangle("line", MARGIN_X, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.max_health), BAR_HEIGHT)
 
     love.graphics.setColor(gColors["red"])
-    love.graphics.rectangle("fill", 10, VIRTUAL_HEIGHT - 5 - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.health), BAR_HEIGHT)
+    love.graphics.rectangle("fill", MARGIN_X, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.health), BAR_HEIGHT)
 
     love.graphics.setColor(gColors["dark_grey"])
-    love.graphics.rectangle("fill", 10 + self.health, VIRTUAL_HEIGHT - 5 - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.max_health - self.health), BAR_HEIGHT)
+    love.graphics.rectangle("fill", MARGIN_X + self.health, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.max_health - self.health), BAR_HEIGHT)
 
 
     love.graphics.setColor(1,1,1,1)
-    love.graphics.printf(self.health .. "/" .. self.max_health, 10 + 2, VIRTUAL_HEIGHT - 5 - BAR_HEIGHT / 2 - 4, self.max_health - 2,"left")
+    love.graphics.printf(self.health .. "/" .. self.max_health, MARGIN_X + 2, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT / 2 - 4, self.max_health - 2,"left")
+
+    for _, attack in pairs(self.attacks) do
+        attack:render()
+    end
 end

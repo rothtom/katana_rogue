@@ -13,7 +13,30 @@ function PlayButton:update(dt)
                         ["damage"] = 50,
                         ["duration"] = 1,
                         ["cooldown"] = 2,
-                    })
+                    },
+                    "q"    
+                ),
+                    ["w"] = Attack({
+                        ["damage"] = 50,
+                        ["duration"] = 1,
+                        ["cooldown"] = 2,
+                    },
+                    "w" 
+                ),
+                    ["e"] = Attack({
+                        ["damage"] = 50,
+                        ["duration"] = 1,
+                        ["cooldown"] = 2,
+                    },
+                    "e"  
+                ),
+                    ["r"] = Attack({
+                        ["damage"] = 50,
+                        ["duration"] = 1,
+                        ["cooldown"] = 2,
+                    },
+                    "r"
+                ),
                 }
             ),
             enemies = {Enemie({
