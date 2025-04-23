@@ -2,6 +2,7 @@ PickLevelUpState = Class{__includes = BaseState}
 
 function PickLevelUpState:enter(params)
     self.player = params.player
+    self.upgrades = params.upgrades
 end
 
 function PickLevelUpState:pick(stat)
@@ -13,9 +14,17 @@ function PickLevelUpState:pick(stat)
 end
 
 function PickLevelUpState:update(dt)
-
+    for _, upgrade in pairs(self.upgrades) do
+        upgrade:update(dt)
+    end
 end
 
-function PickLevelUpState:render()
 
+
+function PickLevelUpState:render()
+    love.graphics.draw(gImages["playBackground"], 0, 0)
+    
+    for _, upgrade in pairs(self.upgrades) do
+        upgrade:render()
+    end
 end

@@ -16,6 +16,9 @@ require "src/states/StartState"
 require "src/states/PlayState"
 require "src/states/PickLevelUpState"
 
+require "src/Utils"
+
 require "src/Player"
 require "src/Enemie"
 require "src/Attack"
+require "src/Upgrade"

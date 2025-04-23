@@ -2,7 +2,6 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:enter(params)
     self.player = params.player
-    self.round = params.round
     self.enemies = params.enemies
 end
 
@@ -12,7 +11,33 @@ function PlayState:update(dt)
     end
     if #self.enemies == 0 then
         gStateMachine:change("pick_levelup", {
-
+            player = self.player,
+            upgrades = {
+                Upgrade({
+                    ["modifiers"] = {
+                        ["max_health"] = 10,
+                    },
+                    ["slot"] = 1,
+                    ["player"] = self.player
+                }
+                ),
+                Upgrade({
+                    ["modifiers"] = {
+                        ["damage"] = 0.1,
+                    },
+                    ["slot"] = 2,
+                    ["player"] = self.player
+                }
+                ),
+                Upgrade({
+                    ["modifiers"] = {
+                        ["health"] = 10,
+                    },
+                    ["slot"] = 3,
+                    ["player"] = self.player
+                }
+                ),
+            }
         })
     end
     self.player:setEnemie(self.enemies[1])
@@ -29,5 +54,5 @@ function PlayState:render()
 end
 
 function PlayState:exit()
-
+    self.player.round = self.player.round + 1
 end
