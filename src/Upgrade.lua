@@ -34,9 +34,7 @@ function Upgrade:apply()
     end
 
     gStateMachine:change("play", {
-        ["player"] = player,
         ["enemies"] = create_enemies(player.round),
-
     })
 end
 

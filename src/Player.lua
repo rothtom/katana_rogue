@@ -14,8 +14,6 @@ function Player:init(stats, sword, attacks, round)
 end
 
 function Player:update(dt)
-    self.health = math.min(self.health, self.max_health)
-
     for _, attack in pairs(self.attacks) do
         attack:update(dt)
     end
@@ -50,10 +48,14 @@ function Player:setTarget(target)
 end
 
 function Player:reset()
-    self.health = math.floor(math.min(self.max_health, self.health + (self.max_health - self.health * 0.7) + 1))
+    self:heal(math.ceil(((self.max_health - self.health) * 0.7))) -- heal for 70% missing hp
     for _, attack in pairs(self.attacks) do
         attack:reset()
     end
+end
+
+function Player:heal(ammount)
+    self.health = math.min(self.health + ammount, self.max_health)
 end
 
 function Player:render()
