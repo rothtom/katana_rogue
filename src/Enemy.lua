@@ -14,6 +14,17 @@ function Enemy:init(level, slot)
     self:scale_damage(level)
     self.slot = slot
     self:calculate_position()
+    self.next_attack = math.random(0.8, 1.5)
+    self.position = "idle"
+end
+
+function Enemy:update(dt)
+    self.next_attack = self.next_attack - dt
+    if self.next_attack <= 0 then
+        self:Attack()
+    elseif self.next_attack < 0.3 then
+        self:TelegraphAttack()
+    end
 end
 
 function Enemy:render()
@@ -34,6 +45,14 @@ function Enemy:render()
     love.graphics.setColor(1,1,1,1)
     love.graphics.draw(gImages["enemie"], self.x - ((ENEMY_WIDTH - BAR_WIDTH) / 2), VIRTUAL_HEIGHT / 2 - ENEMY_HEIGHT/2)
     
+end
+
+function Enemy:TelegraphAttack()
+    
+end
+
+function Enemy:Attack()
+
 end
 
 function Enemy:calculate_position()

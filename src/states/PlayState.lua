@@ -1,10 +1,9 @@
 PlayState = Class{__includes = BaseState}
 
 function PlayState:enter(params)
-    self.player = params.player
     self.enemies = params.enemies
-    self.player:setTarget(self.enemies[1])
-    self.player:reset()
+    player:setTarget(self.enemies[1])
+    player:reset()
 end
 
 function PlayState:update(dt)
@@ -12,14 +11,14 @@ function PlayState:update(dt)
         table.remove(self.enemies, 1)
         if #self.enemies == 0 then
             gStateMachine:change("pick_levelup", {
-                player = self.player,
+                player = player,
                 upgrades = {
                     Upgrade({
                         ["modifiers"] = {
                             ["max_health"] = 10,
                         },
                         ["slot"] = 1,
-                        ["player"] = self.player
+                        ["player"] = player
                     }
                     ),
                     Upgrade({
@@ -27,7 +26,7 @@ function PlayState:update(dt)
                             ["damage"] = 0.1,
                         },
                         ["slot"] = 2,
-                        ["player"] = self.player
+                        ["player"] = player
                     }
                     ),
                     Upgrade({
@@ -35,7 +34,7 @@ function PlayState:update(dt)
                             ["health"] = 10,
                         },
                         ["slot"] = 3,
-                        ["player"] = self.player
+                        ["player"] = player
                     }
                     ),
                 }
@@ -43,7 +42,7 @@ function PlayState:update(dt)
 
         else
             -- if enemies left ->new target
-            self.player:setTarget(self.enemies[1])
+            player:setTarget(self.enemies[1])
             
             for _, enemy in pairs(self.enemies) do
                 enemy.slot = enemy.slot - 1
@@ -54,7 +53,7 @@ function PlayState:update(dt)
 
         
     end
-    self.player:update(dt)
+    player:update(dt)
 end
 
 function PlayState:render()
@@ -62,10 +61,10 @@ function PlayState:render()
     for i=1, #self.enemies do
         self.enemies[#self.enemies-i+1]:render() 
     end
-    self.player:render()
+    player:render()
 
 end
 
 function PlayState:exit()
-    self.player.round = self.player.round + 1
+    player.round = player.round + 1
 end

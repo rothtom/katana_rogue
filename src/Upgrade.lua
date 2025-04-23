@@ -9,7 +9,6 @@ function Upgrade:init(params)
     self.padding_x = self.width / 2
     self.x = self.padding_x + (self.padding_x + self.width) * (self.slot - 1)
     self.y =  VIRTUAL_HEIGHT / 2 - self.height / 2
-    self.player = params.player
     
 end
 
@@ -31,12 +30,12 @@ end
 
 function Upgrade:apply()
     for stat, value in pairs(self.modifiers) do
-        self.player[stat] = self.player[stat] + value
+        player[stat] = player[stat] + value
     end
 
     gStateMachine:change("play", {
-        ["player"] = self.player,
-        ["enemies"] = create_enemies(self.player.round),
+        ["player"] = player,
+        ["enemies"] = create_enemies(player.round),
 
     })
 end

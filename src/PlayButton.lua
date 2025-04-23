@@ -2,12 +2,11 @@ PlayButton = Class{__includes = Button}
 
 function PlayButton:update(dt)
     if self:isClicked() then
-        gStateMachine:change("play", {
-            ["player"] = Player({
-                    max_health = 120,
-                    health = 100
-                },
-                nil, -- sword
+        player = Player({
+            max_health = 120,
+            health = 100,
+            },
+            nil, -- sword
                 {
                     ["q"] = Attack({
                         ["damage"] = 50,
@@ -40,7 +39,8 @@ function PlayButton:update(dt)
                 
                 },
                 1 -- round
-            ),
+        )
+        gStateMachine:change("play", {
             ["enemies"] = create_enemies(1),
         })
     end

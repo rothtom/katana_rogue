@@ -1,15 +1,15 @@
 PickLevelUpState = Class{__includes = BaseState}
 
 function PickLevelUpState:enter(params)
-    self.player = params.player
+    
     self.upgrades = params.upgrades
 end
 
 function PickLevelUpState:pick(stat)
     if stat == "max_health" then
-        self.player.max_health = self.palyer.max_health + 10
+        player.max_health = self.palyer.max_health + 10
     elseif stat == "damage" then
-        self.player.damage = self.palyer.damage + 0.1
+        player.damage = self.palyer.damage + 0.1
     end
 end
 
