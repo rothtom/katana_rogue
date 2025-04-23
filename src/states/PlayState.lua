@@ -3,11 +3,15 @@ PlayState = Class{__includes = BaseState}
 function PlayState:enter(params)
     self.player = params.player
     self.enemies = params.enemies
+    self.player:setEnemie(self.enemies[1])
+    self.player:resetAttacks()
 end
 
 function PlayState:update(dt)
     if self.enemies[1].health <= 0 then
         table.remove(self.enemies, 1)
+        self.player:setEnemie(self.enemies[1])
+        self.player:resetAttacks()
     end
     if #self.enemies == 0 then
         gStateMachine:change("pick_levelup", {
@@ -40,7 +44,6 @@ function PlayState:update(dt)
             }
         })
     end
-    self.player:setEnemie(self.enemies[1])
     self.player:update(dt)
 end
 

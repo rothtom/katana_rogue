@@ -1,4 +1,4 @@
-Enemie = Class{}
+Enemy = Class{}
 
 local BAR_WIDTH = 96 * (2/3)
 local BAR_HEIGHT = 12
@@ -7,13 +7,14 @@ local ENEMY_HEIGHT = 128
 local BAR_Y_OFFSET = 15
 
 
-function Enemie:init(stats)
-    self.max_health = stats.max_health
-    self.health = stats.health or stats.max_health
-    self.damage = stats.damage
+function Enemy:init(level)
+    self.level = level
+    self:scale_max_hp(level)
+    self.health = self.max_health
+    self:scale_damage(level)
 end
 
-function Enemie:render()
+function Enemy:render()
     local x = VIRTUAL_WIDTH / 2 - BAR_WIDTH/2
     local y = VIRTUAL_HEIGHT / 2 - ENEMY_HEIGHT/2 - BAR_Y_OFFSET
 
@@ -36,6 +37,22 @@ function Enemie:render()
     
 end
 
-function Enemie:take_damage(ammount)
+function Enemy:take_damage(ammount)
     self.health = self.health - ammount
+end
+
+function Enemy:scale_max_hp(level)
+    self.max_health = 10
+    for _=1, level - 1 do
+        self.max_health = self.max_health * 1.2
+    end
+    self.max_health = math.floor(self.max_health)
+end
+
+function  Enemy:scale_damage(level)
+    self.damage = 5
+    for _=1 , level - 1 do
+        self.damage = self.damage * 1.1
+    end
+    self.damage = math.floor(self.damage)
 end

@@ -41,11 +41,7 @@ function PlayButton:update(dt)
                 },
                 1 -- round
             ),
-            enemies = {Enemie({
-                max_health = 100,
-                damage = 72,
-            }
-            )},
+            ["enemies"] = create_enemies(1),
         })
     end
 end

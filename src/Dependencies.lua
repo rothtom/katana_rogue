@@ -19,6 +19,6 @@ require "src/states/PickLevelUpState"
 require "src/Utils"
 
 require "src/Player"
-require "src/Enemie"
+require "src.Enemy"
 require "src/Attack"
 require "src/Upgrade"
