@@ -28,6 +28,11 @@ function Attack:activate(target, player)
     self.cooldown_left = self.cooldown
 end
 
+function Attack:reset()
+    self.cooldown_left = 0
+    self.duration_left = 0
+end
+
 function Attack:render()
     if self:is_active() then
         love.graphics.setColor(gColors["light_blue"])        

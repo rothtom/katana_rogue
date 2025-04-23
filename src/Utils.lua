@@ -1,10 +1,9 @@
-
-
 function create_enemies(round)
     local enemies = {}
-    for _=1, linear_enemy_count(round) do
+    for i=1, linear_enemy_count(round) do
         table.insert(enemies, Enemy(
-            linear_enemy_level(round)
+            linear_enemy_level(round),
+            i
         ))
     end
     return enemies

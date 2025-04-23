@@ -45,8 +45,15 @@ function Player:any_attack_active()
     return false
 end
 
-function Player:setEnemie(target)
+function Player:setTarget(target)
     self.target = target
+end
+
+function Player:reset()
+    self.health = self.max_health
+    for _, attack in pairs(self.attacks) do
+        attack:reset()
+    end
 end
 
 function Player:render()
@@ -64,7 +71,7 @@ function Player:render()
     love.graphics.setColor(gColors["dark_grey"])
     love.graphics.rectangle("fill", MARGIN_X + self.health, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.max_health - self.health), BAR_HEIGHT)
 
-
+    love.graphics.setFont(gFonts["small"])
     love.graphics.setColor(1,1,1,1)
     love.graphics.printf(self.health .. "/" .. self.max_health, MARGIN_X + 2, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT / 2 - 4, self.max_health - 2,"left")
 
