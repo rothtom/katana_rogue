@@ -17,6 +17,7 @@ require "src/states/StartState"
 require "src/states/PlayState"
 require "src/states/PickLevelUpState"
 require "src/states/DeathState"
+require "src/states/ShopState"
 
 require "src/Utils"
 
@@ -26,3 +27,5 @@ require "src/Attack"
 require "src/Upgrade"
 
 require "src/Sword"
+
+require "src/ShopItem"

@@ -31,6 +31,7 @@ function love.load()
         ['start'] = function() return StartState() end,
         ['play'] = function() return PlayState() end,
         ['pick_levelup'] = function() return PickLevelUpState() end,
+        ["shop"] = function () return ShopState() end,
         ["death"] = function() return DeathState() end,
         --[[
         ['serve'] = function() return ServeState() end,

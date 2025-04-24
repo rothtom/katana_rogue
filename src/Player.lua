@@ -2,7 +2,7 @@ Player = Class{}
 
 local BAR_HEIGHT = 8
 
-function Player:init(stats, round)
+function Player:init(stats)
     self.max_health = stats.max_health or 100
     self.health = stats.health or stats.max_health
     self.strength = stats.strength or 1
@@ -10,7 +10,6 @@ function Player:init(stats, round)
     self.attacks = attacks
     self.target = nil
     self.level = 1
-    self.round = round
 end
 
 function Player:update(dt)

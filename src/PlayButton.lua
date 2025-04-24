@@ -37,12 +37,12 @@ function PlayButton:update(dt)
         ),
         
         }
+        round = 1
         player = Player({
             max_health = 10,
             health = 10,
             strength = 1,
-            },
-            1 -- round
+            }
         )
         gStateMachine:change("play", {
             ["enemies"] = create_enemies(1),

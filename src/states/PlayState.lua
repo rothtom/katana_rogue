@@ -38,5 +38,5 @@ function PlayState:render()
 end
 
 function PlayState:exit()
-    player.round = player.round + 1
+    round = round + 1
 end

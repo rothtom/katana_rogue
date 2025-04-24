@@ -15,9 +15,7 @@ end
 function Upgrade:update(dt)
     if self:isClicked() then
         self:apply()
-        gStateMachine:change("play", {
-            ["enemies"] = create_enemies(player.round),
-        })
+        gStateMachine:change("shop", {})
     end
 end
 
