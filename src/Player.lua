@@ -45,10 +45,8 @@ function Player:update(dt)
     end
 end
 
-function Player:apply(modifiers)
-    print(modifiers)
-    for stat, ammount in pairs(modifiers) do
-        print(stat, ammount)
+function Player:apply(stats)
+    for stat, ammount in pairs(stats) do
         self.stats[stat] = self.stats[stat] + ammount
     end
 end

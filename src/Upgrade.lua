@@ -43,8 +43,6 @@ function Upgrade:render()
     love.graphics.setColor(1,1,1,1)
     for _, modifier in pairs(self.modifiers) do
         for stat, ammount in pairs(modifier.stats) do
-            print(modifier)
-            print(stat)
             love.graphics.setFont(gFonts["normal"])
             love.graphics.printf(gStatToName[stat], self.x, self.y, self.width,"center")
             love.graphics.setFont(gFonts["small"])

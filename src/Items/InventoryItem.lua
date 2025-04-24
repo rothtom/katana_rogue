@@ -21,7 +21,7 @@ end
 
 function InventoryItem:update(dt)
     for _=1, self.ammount do
-        print("Hello")
+
     end
 end
 

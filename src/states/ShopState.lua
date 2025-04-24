@@ -6,12 +6,9 @@ function ShopState:enter(params)
             ["name"] = "BigMac",
             ["modifiers"] = {
                 Modifier(player, {
-                    ["max_health"] = 20,
-                    ["damage"] = -0.1
+                    ["max_health"] = -10,
+                    ["strength"] = 0.2
                 }),
-                Modifier(sword, {
-                    ["damage"] = 5
-                })
             },
             ["base_price"] = 20,
             ["slot"] = 1,
@@ -22,11 +19,7 @@ function ShopState:enter(params)
             ["modifiers"] = {
                 Modifier(player, {
                     ["max_health"] = 20,
-                    ["damage"] = -0.1
                 }),
-                Modifier(sword, {
-                    ["damage"] = 5
-                })
             },
             ["base_price"] = 12,
             ["slot"] = 2,
@@ -36,11 +29,11 @@ function ShopState:enter(params)
             ["name"] = "Pommes",
             ["modifiers"] = {
                 Modifier(player, {
-                    ["max_health"] = 20,
-                    ["damage"] = -0.1
+                    ["max_health"] = 70,
+                    ["strength"] = -0.3
                 }),
                 Modifier(sword, {
-                    ["damage"] = 5
+                    ["damage"] = 50
                 })
             },
             ["base_price"] = 16,
