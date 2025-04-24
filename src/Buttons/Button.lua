@@ -8,7 +8,7 @@ function Button:init(text, x, y, width, height, font)
     self.text = text
     self.font = font or gFonts["buttons"]
 
-    self.text_y = self.y + (self.height/2) - (getFontHeight(self.font) / 2)
+    self.text_y = self.y + (self.height/2) - (getFontHeight(self.font) / 2) + 1
 end
 
 function Button:render()

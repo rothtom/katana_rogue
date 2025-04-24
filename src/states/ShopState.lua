@@ -32,9 +32,21 @@ function ShopState:enter(params)
             ["slot"] = 3,
         }),
     }
+    local MARGIN_X = 5
+    local MARGIN_Y = 5
+    local BUTTON_WIDTH = 128
+    local BUTTON_HEIGHT = 16
+    self.NextRoundButton = NextRoundButton("Next Round",
+                                            make_divisible_by(VIRTUAL_WIDTH - BUTTON_WIDTH - MARGIN_X, 8), 
+                                            make_divisible_by(VIRTUAL_HEIGHT - BUTTON_HEIGHT - MARGIN_Y, 8),
+                                            BUTTON_WIDTH, BUTTON_HEIGHT,
+                                            gFonts["normal"]
+                                        )
 end
 
 function ShopState:update(dt)
+    self.NextRoundButton:update(dt)
+
     for i, item in pairs(self.items) do
         item:update(dt)
         if item.bought then
@@ -66,6 +78,8 @@ function ShopState:render()
     for _, item in pairs(player.items) do
         item:render()
     end
+
+    self.NextRoundButton:render()
 end
 
 function ShopState:exit()

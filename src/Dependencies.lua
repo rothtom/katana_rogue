@@ -9,6 +9,7 @@ require "src/Buttons/PlayButton"
 require "src/Buttons/SettingsButton"
 require "src/Buttons/ExitButton"
 require "src/Buttons/ExitToHomeButton"
+require "src/Buttons/NextRoundButton"
 
 require "src/StateMachine"
 

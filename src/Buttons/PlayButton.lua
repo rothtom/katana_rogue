@@ -44,8 +44,6 @@ function PlayButton:update(dt)
             strength = 1,
             }
         )
-        gStateMachine:change("play", {
-            ["enemies"] = create_enemies(1),
-        })
+        gStateMachine:change("play", {})
     end
 end

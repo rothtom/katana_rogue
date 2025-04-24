@@ -1,7 +1,7 @@
 PlayState = Class{__includes = BaseState}
 
 function PlayState:enter(params)
-    self.enemies = params.enemies
+    self.enemies = create_enemies()
     player:setTarget(self.enemies[1])
     player:reset()
 end
