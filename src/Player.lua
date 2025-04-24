@@ -10,6 +10,7 @@ function Player:init(stats)
     self.attacks = attacks
     self.target = nil
     self.level = 1
+    self.items = {}
 end
 
 function Player:update(dt)
@@ -37,6 +38,16 @@ function Player:update(dt)
     end
 
     self.sword:update(dt)
+    for _, item in pairs(self.items) do
+        item:update(dt)
+    end
+end
+
+function Player:apply(modifiers)
+    for stat, ammount in pairs(modifiers) do
+        print(stat, ammount)
+        self[stat] = self[stat] + ammount
+    end
 end
 
 function Player:any_attack_active()

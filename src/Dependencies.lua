@@ -23,9 +23,10 @@ require "src/Utils"
 
 require "src/Player"
 require "src.Enemy"
-require "src/Attack"
+require "src/Attacks/Attack"
 require "src/Upgrade"
 
 require "src/Sword"
 
-require "src/ShopItem"
+require "src/Items/ShopItem"
+require "src/Items/InventoryItem"
