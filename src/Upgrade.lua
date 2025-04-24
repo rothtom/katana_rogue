@@ -30,8 +30,8 @@ function Upgrade:isHovered()
 end
 
 function Upgrade:apply()
-    for stat, value in pairs(self.modifiers) do
-        player[stat] = player[stat] + value
+    for _, modifier in pairs(self.modifiers) do
+        modifier:apply()
     end
 end
 
@@ -41,16 +41,20 @@ function Upgrade:render()
     love.graphics.setColor(gColors["light_grey1"])
     love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
     love.graphics.setColor(1,1,1,1)
-    for stat, ammount in pairs(self.modifiers) do
-        love.graphics.setFont(gFonts["normal"])
-        love.graphics.printf(gStatToName[stat], self.x, self.y, self.width,"center")
-        love.graphics.setFont(gFonts["small"])
-        if ammount < 0 then
-            love.graphics.setColor(gColors["red2"])
-            love.graphics.printf("-" .. ammount, self.x, self.y + 20, self.width, "center")
-        else            
-            love.graphics.setColor(gColors["green"])
-            love.graphics.printf("+" .. ammount, self.x, self.y + 20, self.width, "center")
+    for _, modifier in pairs(self.modifiers) do
+        for stat, ammount in pairs(modifier.stats) do
+            print(modifier)
+            print(stat)
+            love.graphics.setFont(gFonts["normal"])
+            love.graphics.printf(gStatToName[stat], self.x, self.y, self.width,"center")
+            love.graphics.setFont(gFonts["small"])
+            if ammount < 0 then
+                love.graphics.setColor(gColors["red2"])
+                love.graphics.printf("-" .. ammount, self.x, self.y + 20, self.width, "center")
+            else            
+                love.graphics.setColor(gColors["green"])
+                love.graphics.printf("+" .. ammount, self.x, self.y + 20, self.width, "center")
+            end
         end
     end
 end

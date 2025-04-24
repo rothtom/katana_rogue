@@ -39,11 +39,10 @@ function PlayButton:update(dt)
         }
         round = 1
         player = Player({
-            max_health = 10,
-            health = 10,
-            strength = 1,
-            }
-        )
+            ["max_health"] = 100,
+            ["strength"] = 1,
+        })
+
         gStateMachine:change("play", {})
     end
 end

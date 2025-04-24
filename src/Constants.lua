@@ -10,6 +10,15 @@ BUTTON_HEIGHT = 25
 MARGIN_X = 10
 MARGIN_Y = 3
 
+BASE_REROLL_PRICE = 10
+
+StatsCap = {
+    ["max_health"] = 1000,
+    ["strength"] = 100,
+    ["damage"] = nil,
+    ["cooldown_reduction"] = 0.7,
+}
+
 gColors = {
     ["red"] = {1, 0, 68/255, 1},
     ["red2"] = {208/255, 0, 0, 1},
@@ -35,4 +44,7 @@ gStatToName = {
     ["health"] = "HP",
     ["damage"] = "Damage",
     ["strength"] = "Strength",
+    ["cooldown_reduction"] = "Cooldown Reduction",
+    ["cooldown"] = "Cooldown",
+    ["duration"] = "Duration",
 }

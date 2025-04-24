@@ -21,6 +21,7 @@ require "src/states/DeathState"
 require "src/states/ShopState"
 
 require "src/Utils"
+require "src/Modifier"
 
 require "src/Player"
 require "src.Enemy"

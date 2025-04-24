@@ -13,7 +13,8 @@ local STAT_LINE_MARGIN = 2
 
 function ShopItem:init(params)
     self.name = params.name
-    self.modifiers = params.stats
+    self.modifiers = params.modifiers
+
     self.ammount = params.ammount or 1
     self.base_price = params.base_price
     self.price = calculate_price(self.base_price, round)
@@ -50,7 +51,9 @@ end
 
 function ShopItem:apply()
     for _=1, self.ammount do
-        player:apply(self.modifiers)
+        for _, modifier in pairs(self.modifiers) do
+            modifier:apply()
+        end
     end
 end
 
@@ -85,28 +88,30 @@ function ShopItem:render()
     love.graphics.rectangle("fill", self.statbox_x, self.statbox_y, STAT_LINE_WIDTH, STAT_LINE_MARGIN + ((STAT_LINE_HEIGHT + STAT_LINE_MARGIN) * #self.modifiers))
     ]]--
     local stat_num = 1
-    for stat, ammount in pairs(self.modifiers) do
-        local y = self.statbox_y + ((stat_num - 1) * (STAT_LINE_HEIGHT + STAT_LINE_MARGIN))
-        love.graphics.setColor(gColors["white"])
-        love.graphics.rectangle("line", self.statbox_x, y, 
-                                STAT_LINE_WIDTH, STAT_LINE_HEIGHT)
+    for _, modifier in pairs(self.modifiers) do
+        for stat, ammount in pairs(modifier.stats) do
+            local y = self.statbox_y + ((stat_num - 1) * (STAT_LINE_HEIGHT + STAT_LINE_MARGIN))
+            love.graphics.setColor(gColors["white"])
+            love.graphics.rectangle("line", self.statbox_x, y, 
+                                    STAT_LINE_WIDTH, STAT_LINE_HEIGHT)
 
-        love.graphics.setColor(gColors["grey"])
-        love.graphics.rectangle("fill", self.statbox_x, y + 1,
-                                STAT_LINE_WIDTH, STAT_LINE_HEIGHT - 1)
+            love.graphics.setColor(gColors["grey"])
+            love.graphics.rectangle("fill", self.statbox_x, y + 1,
+                                    STAT_LINE_WIDTH, STAT_LINE_HEIGHT - 1)
 
-        love.graphics.setColor(1,1,1,1)
-        love.graphics.printf(gStatToName[stat], self.statbox_x + 1, y, STAT_LINE_WIDTH - 1,"left")
+            love.graphics.setColor(1,1,1,1)
+            love.graphics.printf(gStatToName[stat], self.statbox_x + 1, y, STAT_LINE_WIDTH - 1,"left")
 
-        if ammount > 0 then
-            love.graphics.setColor(gColors["green"])
-        else
-            love.graphics.setColor(gColors["red2"])
+            if ammount > 0 then
+                love.graphics.setColor(gColors["green"])
+            else
+                love.graphics.setColor(gColors["red2"])
+            end
+            
+            love.graphics.printf(ammount, self.statbox_x + 1, y, STAT_LINE_WIDTH - 2, "right")
+
+            stat_num = stat_num + 1
         end
-        
-        love.graphics.printf(ammount, self.statbox_x + 1, y, STAT_LINE_WIDTH - 2, "right")
-
-        stat_num = stat_num + 1
     end
 
     love.graphics.setColor(1,1,1,1)

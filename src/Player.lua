@@ -3,9 +3,11 @@ Player = Class{}
 local BAR_HEIGHT = 8
 
 function Player:init(stats)
-    self.max_health = stats.max_health or 100
-    self.health = stats.health or stats.max_health
-    self.strength = stats.strength or 1
+    self.stats = {}
+    self.stats["max_health"] = stats.max_health or 100
+    self.stats["strength"] = stats.strength or 1
+    self.stats["health"] = stats.health or self.stats["max_health"]
+
     self.sword = sword
     self.attacks = attacks
     self.target = nil
@@ -44,8 +46,10 @@ function Player:update(dt)
 end
 
 function Player:apply(modifiers)
+    print(modifiers)
     for stat, ammount in pairs(modifiers) do
-        self[stat] = self[stat] + ammount
+        print(stat, ammount)
+        self.stats[stat] = self.stats[stat] + ammount
     end
 end
 
@@ -63,20 +67,18 @@ function Player:setTarget(target)
 end
 
 function Player:reset()
-    self:heal(math.ceil(((self.max_health - self.health) * 0.7))) -- heal for 70% missing hp
+    self:heal(math.ceil(((self.stats["max_health"] - self.stats["health"]) * 0.7))) -- heal for 70% missing hp
     for _, attack in pairs(self.attacks) do
         attack:reset()
     end
 end
 
 function Player:heal(ammount)
-    self.health = math.min(self.health + ammount, self.max_health)
+    self.health = math.min(self.stats["health"] + ammount, self.stats["max_health"])
 end
 
 function Player:die()
-    gStateMachine:change("death", {
-
-    })
+    gStateMachine:change("death", {})
 end
 
 function Player:render()
@@ -87,17 +89,17 @@ function Player:render()
     love.graphics.draw(gImages["playerSprite"], 0, 0)
 
     love.graphics.setColor(gColors["light_grey1"])
-    love.graphics.rectangle("line", MARGIN_X, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.max_health), BAR_HEIGHT)
+    love.graphics.rectangle("line", MARGIN_X, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.stats["max_health"]), BAR_HEIGHT)
 
     love.graphics.setColor(gColors["red"])
-    love.graphics.rectangle("fill", MARGIN_X, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.health), BAR_HEIGHT)
+    love.graphics.rectangle("fill", MARGIN_X, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.stats["health"]), BAR_HEIGHT)
 
     love.graphics.setColor(gColors["dark_grey"])
-    love.graphics.rectangle("fill", MARGIN_X + self.health, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.max_health - self.health), BAR_HEIGHT)
+    love.graphics.rectangle("fill", MARGIN_X + self.stats["health"], VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT, math.min(HEALTHBAR_MAX_WIDTH, self.stats["max_health"] - self.stats["health"]), BAR_HEIGHT)
 
     love.graphics.setFont(gFonts["small"])
     love.graphics.setColor(1,1,1,1)
-    love.graphics.printf(self.health .. "/" .. self.max_health, MARGIN_X + 2, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT / 2 - 4, self.max_health - 2,"left")
+    love.graphics.printf(self.health .. "/" .. self.stats["max_health"], MARGIN_X + 2, VIRTUAL_HEIGHT - MARGIN_Y - BAR_HEIGHT / 2 - 4, self.stats["max_health"] - 2,"left")
 
     for _, attack in pairs(self.attacks) do
         attack:render()

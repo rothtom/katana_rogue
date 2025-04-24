@@ -4,21 +4,32 @@ function PickLevelUpState:enter(params)
     self.upgrades = {
         Upgrade({
             ["modifiers"] = {
-                ["max_health"] = 10,
+                Modifier(player, {
+                    ["max_health"] = 20,
+                }),
+                Modifier(sword, {
+                    ["damage"] = 15,
+                    ["cooldown_reduction"] = -0.1
+                })
             },
             ["slot"] = 1,
         }
         ),
         Upgrade({
             ["modifiers"] = {
-                ["strength"] = 0.1,
+                Modifier(player, {
+                    ["strength"] = 0.1,
+                })
             },
             ["slot"] = 2,
         }
         ),
         Upgrade({
             ["modifiers"] = {
-                ["health"] = 10,
+                Modifier(player.attacks["q"], {
+                    ["damage"] = 4,
+                    ["duration"] = -0.2
+                })
             },
             ["slot"] = 3,
         }

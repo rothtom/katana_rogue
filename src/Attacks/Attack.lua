@@ -5,10 +5,11 @@ local ICON_MARGIN = 5
 
 
 function Attack:init(stats, key)
-    self.damage = stats.damage
-    self.duration = stats.duration
+    self.stats = {}
+    self.stats["damage"] = stats.damage
+    self.stats["duration"] = stats.duration
     self.duration_left = 0
-    self.cooldown = stats.cooldown
+    self.stats["cooldown"] = stats.cooldown
     self.cooldown_left = 0
     self.key = key
     self.attack_place = gAttackMap[key]
@@ -24,14 +25,20 @@ function Attack:update(dt)
 end
 
 function Attack:activate(target)
-    target.health = target.health - ((self.damage + sword.damage) * player.strength)
-    self.duration_left = self.duration
-    self.cooldown_left = self.cooldown
+    target.health = target.health - ((self.stats["damage"] + sword.stats["damage"]) * player.stats["strength"])
+    self.duration_left = self.stats["duration"]
+    self.cooldown_left = self.stats["cooldown"]
 end
 
 function Attack:reset()
     self.cooldown_left = 0
     self.duration_left = 0
+end
+
+function Attack:apply(stats)
+    for stat, ammount in pairs(stats) do
+        self.stats[stat] = self.stats[stat] + ammount
+    end
 end
 
 function Attack:render()

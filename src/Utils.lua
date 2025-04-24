@@ -50,3 +50,8 @@ end
 function make_divisible_by(value, fractor)
     return value - (value % fractor)
 end
+
+
+function calculate_reroll_price()
+    return BASE_REROLL_PRICE + (round * BASE_REROLL_PRICE * 0.1)
+end

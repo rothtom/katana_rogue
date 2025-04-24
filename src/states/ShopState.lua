@@ -4,9 +4,14 @@ function ShopState:enter(params)
     self.items = {
         ShopItem({
             ["name"] = "BigMac",
-            ["stats"] = {
-                ["max_health"] = 20,
-                ["strength"] = -0.2,
+            ["modifiers"] = {
+                Modifier(player, {
+                    ["max_health"] = 20,
+                    ["damage"] = -0.1
+                }),
+                Modifier(sword, {
+                    ["damage"] = 5
+                })
             },
             ["base_price"] = 20,
             ["slot"] = 1,
@@ -14,9 +19,14 @@ function ShopState:enter(params)
         }),
         ShopItem({
             ["name"] = "Chicken nuggets",
-            ["stats"] = {
-                ["max_health"] = -10,
-                ["strength"] = 0.1,
+            ["modifiers"] = {
+                Modifier(player, {
+                    ["max_health"] = 20,
+                    ["damage"] = -0.1
+                }),
+                Modifier(sword, {
+                    ["damage"] = 5
+                })
             },
             ["base_price"] = 12,
             ["slot"] = 2,
@@ -24,9 +34,14 @@ function ShopState:enter(params)
         }),
         ShopItem({
             ["name"] = "Pommes",
-            ["stats"] = {
-                ["max_health"] = 5,
-                ["strength"] = 0.1,
+            ["modifiers"] = {
+                Modifier(player, {
+                    ["max_health"] = 20,
+                    ["damage"] = -0.1
+                }),
+                Modifier(sword, {
+                    ["damage"] = 5
+                })
             },
             ["base_price"] = 16,
             ["slot"] = 3,
@@ -42,6 +57,12 @@ function ShopState:enter(params)
                                             BUTTON_WIDTH, BUTTON_HEIGHT,
                                             gFonts["normal"]
                                         )
+
+    self.reroll_price = calculate_reroll_price()
+    -- self.RerollButton = Button(self.reroll_price,
+
+--)
+
 end
 
 function ShopState:update(dt)
