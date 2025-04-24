@@ -45,7 +45,6 @@ end
 
 function Player:apply(modifiers)
     for stat, ammount in pairs(modifiers) do
-        print(stat, ammount)
         self[stat] = self[stat] + ammount
     end
 end

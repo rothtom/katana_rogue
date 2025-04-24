@@ -4,11 +4,11 @@ push = require "lib/push"
 
 require "src/Constants"
 
-require "src/Button"
-require "src/PlayButton"
-require "src/SettingsButton"
-require "src/ExitButton"
-require "src/ExitToHomeButton"
+require "src/Buttons/Button"
+require "src/Buttons/PlayButton"
+require "src/Buttons/SettingsButton"
+require "src/Buttons/ExitButton"
+require "src/Buttons/ExitToHomeButton"
 
 require "src/StateMachine"
 

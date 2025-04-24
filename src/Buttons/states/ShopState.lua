@@ -10,7 +10,7 @@ function ShopState:enter(params)
             },
             ["base_price"] = 20,
             ["slot"] = 1,
-            ["targets"] = {player}
+
         }),
         ShopItem({
             ["name"] = "Chicken nuggets",
@@ -20,7 +20,7 @@ function ShopState:enter(params)
             },
             ["base_price"] = 12,
             ["slot"] = 2,
-            ["targets"] = {player}
+
         }),
         ShopItem({
             ["name"] = "Pommes",
@@ -30,7 +30,6 @@ function ShopState:enter(params)
             },
             ["base_price"] = 16,
             ["slot"] = 3,
-            ["targets"] = {player}
         }),
     }
 end
