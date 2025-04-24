@@ -104,8 +104,10 @@ function ShopItem:render()
 
             if ammount > 0 then
                 love.graphics.setColor(gColors["green"])
+                love.graphics.printf("+" .. ammount, self.statbox_x + 1, y, STAT_LINE_WIDTH - 2, "right")
             else
                 love.graphics.setColor(gColors["red2"])
+                love.graphics.printf(ammount, self.statbox_x + 1, y, STAT_LINE_WIDTH - 2, "right")
             end
             
             love.graphics.printf(ammount, self.statbox_x + 1, y, STAT_LINE_WIDTH - 2, "right")

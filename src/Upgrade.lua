@@ -48,7 +48,7 @@ function Upgrade:render()
             love.graphics.setFont(gFonts["small"])
             if ammount < 0 then
                 love.graphics.setColor(gColors["red2"])
-                love.graphics.printf("-" .. ammount, self.x, self.y + 20, self.width, "center")
+                love.graphics.printf(ammount, self.x, self.y + 20, self.width, "center")
             else            
                 love.graphics.setColor(gColors["green"])
                 love.graphics.printf("+" .. ammount, self.x, self.y + 20, self.width, "center")

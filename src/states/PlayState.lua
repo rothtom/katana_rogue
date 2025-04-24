@@ -7,7 +7,7 @@ function PlayState:enter(params)
 end
 
 function PlayState:update(dt)
-    if self.enemies[1].health <= 0 then
+    if self.enemies[1].stats["health"] <= 0 then
         table.remove(self.enemies, 1)
         if #self.enemies == 0 then
             gStateMachine:change("pick_levelup", {})

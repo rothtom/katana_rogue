@@ -25,7 +25,7 @@ function Attack:update(dt)
 end
 
 function Attack:activate(target)
-    target.health = target.health - ((self.stats["damage"] + sword.stats["damage"]) * player.stats["strength"])
+    target:take_damage((self.stats["damage"] + sword.stats["damage"]) * player.stats["strength"])
     self.duration_left = self.stats["duration"]
     self.cooldown_left = self.stats["cooldown"]
 end
