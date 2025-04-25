@@ -8,11 +8,12 @@ local BAR_Y_OFFSET = 15
 
 
 function Enemy:init(level, slot)
-    self.level = level
+    
     self.stats = {}
-    self:scale_max_hp(level)
+    self.stats["level"] = level
+    self:scale_max_hp()
     self.stats["health"] = self.stats["max_health"]
-    self:scale_damage(level)
+    self:scale_damage()
     self.slot = slot
     self:calculate_position()
     self.next_attack = math.random(0.8, 1.5)
@@ -68,24 +69,24 @@ function Enemy:take_damage(ammount)
     self.stats["health"] = self.stats["health"] - ammount
 end
 
-function Enemy:scale_max_hp(level)
+function Enemy:scale_max_hp()
     self.stats["max_health"] = 10
-    for _=1, level - 1 do
+    for _=1, self.stats["level"] - 1 do
         self.stats["max_health"] = self.stats["max_health"] * 1.2
     end
     self.stats["max_health"] = math.floor(self.stats["max_health"])
 end
 
-function  Enemy:scale_damage(level)
+function  Enemy:scale_damage()
     self.stats["damage"] = 5
-    for _=1 , level - 1 do
+    for _=1 , self.stats["level"] - 1 do
         self.stats["damage"] = self.stats["damage"] * 1.1
     end
     self.stats["damage"] = math.floor(self.stats["damage"])
 end
 
 function Enemy:calculate_x_offset()
-    for i=1, self.slot - 1 do
+    for _=1, self.slot - 1 do
         self.x = self.x + (self.x/self.slot) * 0.7
     end
 end

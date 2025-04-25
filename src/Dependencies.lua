@@ -10,6 +10,7 @@ require "src/Buttons/SettingsButton"
 require "src/Buttons/ExitButton"
 require "src/Buttons/ExitToHomeButton"
 require "src/Buttons/NextRoundButton"
+require "src/Buttons/ContinueButton"
 
 require "src/StateMachine"
 
@@ -19,6 +20,7 @@ require "src/states/PlayState"
 require "src/states/PickLevelUpState"
 require "src/states/DeathState"
 require "src/states/ShopState"
+require "src/states/RewardState"
 
 require "src/Utils"
 require "src/Modifier"

@@ -11,6 +11,9 @@ MARGIN_X = 10
 MARGIN_Y = 3
 
 BASE_REROLL_PRICE = 10
+BASE_REWARDS = {
+    ["gold"] = 10,
+}
 
 StatsCap = {
     ["max_health"] = 1000,
@@ -47,4 +50,9 @@ gStatToName = {
     ["cooldown_reduction"] = "Cooldown Reduction",
     ["cooldown"] = "Cooldown",
     ["duration"] = "Duration",
+}
+
+ENEMY_BASE_STATS = {
+    ["max_health"] = 10,
+    ["damage"] = 5,
 }

@@ -12,6 +12,7 @@ function Player:init(stats)
     self.target = nil
     self.level = 1
     self.items = {}
+    self.gold = 0
 end
 
 function Player:update(dt)

@@ -42,9 +42,17 @@ end
 
 function calculate_price(base_price, round)
     for _=1, round do
-        base_price = base_price * 0.1
+        base_price = base_price * 1.1
     end
     return base_price
+end
+
+function scale_gold()
+    local gold = BASE_REWARDS["gold"]
+    for _=1, round-1-1 do
+        gold = gold * 1.15
+    end
+    return math.ceil(gold)
 end
 
 function make_divisible_by(value, fractor)
