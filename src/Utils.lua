@@ -44,7 +44,7 @@ function calculate_price(base_price, round)
     for _=1, round do
         base_price = base_price * 1.1
     end
-    return base_price
+    return math.ceil(base_price)
 end
 
 function scale_gold()

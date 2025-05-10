@@ -52,15 +52,19 @@ function ShopState:enter(params)
                                         )
 
     self.reroll_price = calculate_reroll_price()
-    -- self.RerollButton = Button(self.reroll_price,
-
---)
+    local reroll_button_width = 800
+    self.RerollButton = Button("Reroll: " .. self.reroll_price, VIRTUAL_WIDTH - reroll_button_width - 4, 2, reroll_button_width, 18, gFonts["normal"])
 
 end
 
 function ShopState:update(dt)
     self.NextRoundButton:update(dt)
 
+    if self.RerollButton:isClicked() then
+        if player.gold >= self.reroll_price then
+            self:reroll()
+        end
+    end
     for i, item in pairs(self.items) do
         item:update(dt)
         if item.bought then
@@ -83,6 +87,14 @@ function ShopState:update(dt)
     end
 end
 
+function ShopState:reroll()
+   player 
+end
+
+function ShopState:getItems()
+
+end
+
 function ShopState:render()
     love.graphics.draw(gImages["playBackground"], 0, 0)
     for _, item in pairs(self.items) do
@@ -92,7 +104,7 @@ function ShopState:render()
     for _, item in pairs(player.items) do
         item:render()
     end
-
+    self.RerollButton:render()
     self.NextRoundButton:render()
 end
 
